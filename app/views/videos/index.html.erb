@@ -20,6 +20,10 @@
                     <% elsif !current_user.voted_for? video %>
                       <%= link_to 'Add to Favorites', favorite_video_path(video), method: :put%>
                     <% end %>
+                    <p>
+                      Styles:
+                      <%= video.topic_list %>
+                    </p>
                   </p>
                 </div>
               </div>

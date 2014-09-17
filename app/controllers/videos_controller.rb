@@ -1,4 +1,8 @@
 class VideosController < ApplicationController
+	def user_params
+		params.require(:video).permit(:id, :tag_list)
+	end
+
 	def new
 	  @video = Video.new
 	end
@@ -23,12 +27,18 @@ class VideosController < ApplicationController
 	def favorite
 		@video = Video.find(params[:id])
 		@video.liked_by current_user
+		@video.tag_list = "ruby"
 		redirect_to videos_path
 	end
 
 	def unfavorite
 		@video = Video.find(params[:id])
 		@video.unliked_by current_user
+		redirect_to videos_path
+	end
+
+	def tag
+		@video = Video.find(params[:id])
 		redirect_to videos_path
 	end
 end
