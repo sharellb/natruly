@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :videos, only: [:index, :new, :create, :destroy]
+  resources :videos do
+    member do
+      put "favorite", to: "videos#favorite"
+      put "unfavorite", to: "videos#unfavorite"
+    end
+  end
   
   root to: 'static_pages#home'
   get 'contact' => 'static_pages#contact'
@@ -8,6 +13,8 @@ Rails.application.routes.draw do
   get 'videos' => 'videos#index'
 
   get '/:id', to: 'profiles#show'
+  get '/favorite' => "videos#favorite"
+  get '/unfavorite' => "videos#unfavorite"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

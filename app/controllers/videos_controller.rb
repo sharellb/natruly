@@ -19,4 +19,16 @@ class VideosController < ApplicationController
 
 	def destroy
 	end
+
+	def favorite
+		@video = Video.find(params[:id])
+		@video.liked_by current_user
+		redirect_to videos_path
+	end
+
+	def unfavorite
+		@video = Video.find(params[:id])
+		@video.unliked_by current_user
+		redirect_to videos_path
+	end
 end

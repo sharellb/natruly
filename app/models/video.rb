@@ -1,8 +1,9 @@
 class Video < ActiveRecord::Base
+ 	acts_as_votable
+
+	YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
  
-YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
- 
-validates :link, presence: true, format: YT_LINK_FORMAT
+	validates :link, presence: true, format: YT_LINK_FORMAT
 	before_create -> do
 	  uid = link.match(YT_LINK_FORMAT)
 	  self.uid = uid[2] if uid && uid[2]
@@ -25,24 +26,9 @@ validates :link, presence: true, format: YT_LINK_FORMAT
 	    client = YouTubeIt::OAuth2Client.new(dev_key: 'AIzaSyDJoPnYIX31aGFZfvrC-iN_I5-COroXDcE')
 	    video = client.video_by(uid)
 	    self.title = video.title
-	    self.duration = parse_duration(video.duration)
 	    self.author = video.author.name
-	    self.likes = video.rating.likes
-	    self.dislikes = video.rating.dislikes
 	  rescue
-	    self.title = '' ; self.duration = '00:00:00' ; self.author = '' ; self.likes = 0 ; self.dislikes = 0
+	    self.title = '' ; self.author = ''
 	  end
-	end
-	 
-	def parse_duration(d)
-	  hr = (d / 3600).floor
-	  min = ((d - (hr * 3600)) / 60).floor
-	  sec = (d - (hr * 3600) - (min * 60)).floor
-	 
-	  hr = '0' + hr.to_s if hr.to_i < 10
-	  min = '0' + min.to_s if min.to_i < 10
-	  sec = '0' + sec.to_s if sec.to_i < 10
-	 
-	  hr.to_s + ':' + min.to_s + ':' + sec.to_s
 	end
 end
