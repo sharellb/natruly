@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916202902) do
+ActiveRecord::Schema.define(version: 20140917014248) do
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20140916202902) do
 
   add_index "favorites", ["favorited_id", "favorited_type"], name: "index_favorites_on_favorited_id_and_favorited_type"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+
+  create_table "products", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -40,6 +45,8 @@ ActiveRecord::Schema.define(version: 20140916202902) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "hair_type"
+    t.text     "about"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
