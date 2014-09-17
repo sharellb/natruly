@@ -1,1 +1,25 @@
 <h1><%= @user.profile_name %></h1>
+<h2>Favorites</h2>
+	<% @user.find_voted_items.in_groups_of(3) do |group| %>
+      <div class="row">
+        <% group.each do |video| %>
+          <% if video %>
+            <div class="col-md-4">
+              <div class="yt_video thumbnail">
+                <%= link_to video.link do %> <%= image_tag "https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg", alt: video.title, class: 'yt_preview img-rounded', :"data-uid" => video.uid %> <% end %> 
+                <div class="caption">
+                  <h5><%= video.title %></h5>
+                  <p>Uploaded by: <b><%= video.author %></b></p>
+                    <% if current_user.voted_for? video %>
+                      <%= link_to 'Remove from Favorites', unfavorite_video_path(video), method: :put %>
+                    <% elsif !current_user.voted_for? video %>
+                      <%= link_to 'Add to Favorites', favorite_video_path(video), method: :put%>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
