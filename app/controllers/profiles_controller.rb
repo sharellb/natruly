@@ -6,5 +6,6 @@ class ProfilesController < ApplicationController
 		else
 			render file: 'public/404', status: 404, formats: [:html]
 		end
+		@videos = current_user.favorite_videos
 	end
 end

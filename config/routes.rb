@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :videos, only: [:index, :new, :create]
-
+  
   root to: 'static_pages#home'
   get 'contact' => 'static_pages#contact'
   get 'about' => 'static_pages#about'
