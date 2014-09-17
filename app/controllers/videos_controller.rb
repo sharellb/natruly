@@ -27,7 +27,6 @@ class VideosController < ApplicationController
 	def favorite
 		@video = Video.find(params[:id])
 		@video.liked_by current_user
-		@video.tag_list = "ruby"
 		redirect_to videos_path
 	end
 
