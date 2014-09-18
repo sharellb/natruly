@@ -1,4 +1,5 @@
 class SalonsController < ApplicationController
+
   def index
   	@salons = Salon.all
   	@hash = Gmaps4rails.build_markers(@salons) do |salon, marker|
@@ -6,6 +7,7 @@ class SalonsController < ApplicationController
 	  	marker.lng salon.longitude
   	end
   end
+  
   def new
   	@salon = Salon.new
   end
@@ -19,4 +21,36 @@ class SalonsController < ApplicationController
       render 'new'
     end
   end
+
+  def show
+    @salon = Salon.find_by_id(params[:id])
+    if @salon
+      render action: :show
+    else
+      render file: 'public/404', status: 404, formats: [:html]
+    end
+  end
+
+  def edit
+    @salon = Salon.find_by_id(params[:id])
+  end
+
+  def update
+    @salon = Salon.find_by_id(params[:id])
+    respond_to do |format|
+      if @salon.update(salon_params)
+        format.html { redirect_to @salon, notice: 'Salon was successfully updated.' }
+        format.json { render :show, status: :ok, location: @salon }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+    def salon_params
+      params.require(:salon).permit(:name, :description, :address)
+    end   
+
 end
