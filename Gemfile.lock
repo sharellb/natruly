@@ -64,6 +64,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
     formatador (0.2.5)
+    geocoder (1.2.5)
     gmaps4rails (2.1.2)
     guard (2.6.1)
       formatador (>= 0.2.4)
@@ -213,6 +214,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (= 4.0.1)
   devise
+  geocoder
   gmaps4rails
   guard-minitest (= 2.3.1)
   jbuilder (= 2.1.3)

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'about' => 'static_pages#about'
   get 'videos' => 'videos#index'
-  get 'salons' => 'static_pages#map'
+  get 'salons' => 'salons#index'
 
   get '/:id', to: 'profiles#show'
   get '/favorite' => "videos#favorite"
