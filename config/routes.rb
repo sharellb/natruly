@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       put "unfavorite", to: "videos#unfavorite"
     end
   end
+  resources :salons
   
   root to: 'static_pages#home'
   get 'contact' => 'static_pages#contact'
