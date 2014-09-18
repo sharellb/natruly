@@ -1,5 +1,6 @@
 class SalonsController < ApplicationController
-
+before_action :set_salon, only: [:show, :edit, :update, :destroy]
+  
   def index
   	@salons = Salon.all
   	@hash = Gmaps4rails.build_markers(@salons) do |salon, marker|
@@ -13,42 +14,47 @@ class SalonsController < ApplicationController
   end
 
   def create
-    @salon = Salon.new(params.require(:salon).permit(:address))
-    if @salon.save
-      flash[:success] = 'Salon added!'
-      redirect_to salons_path
-    else
-      render 'new'
+    @salon = Salon.new(salon_params)
+    respond_to do |format|
+      if @salon.save
+        format.html { redirect_to @salon, notice: 'Salon was successfully created.' }
+        format.json { render :show, status: :created, location: @salon }
+      else
+        format.html { render :new }
+      end
     end
   end
 
   def show
-    @salon = Salon.find_by_id(params[:id])
-    if @salon
-      render action: :show
-    else
-      render file: 'public/404', status: 404, formats: [:html]
-    end
   end
 
   def edit
-    @salon = Salon.find_by_id(params[:id])
   end
 
   def update
-    @salon = Salon.find_by_id(params[:id])
     respond_to do |format|
       if @salon.update(salon_params)
         format.html { redirect_to @salon, notice: 'Salon was successfully updated.' }
         format.json { render :show, status: :ok, location: @salon }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  def destroy
+    @salon.destroy
+    respond_to do |format|
+      format.html { redirect_to salons_path, notice: 'Salon was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
+    def set_salon
+      @salon = Salon.find(params[:id])
+    end
+
     def salon_params
       params.require(:salon).permit(:name, :description, :address)
     end   
