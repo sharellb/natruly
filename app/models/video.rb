@@ -1,6 +1,6 @@
 class Video < ActiveRecord::Base
  	acts_as_votable
- 	acts_as_taggable_on :topics
+ 	acts_as_taggable
 
 	YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
  

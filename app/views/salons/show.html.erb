@@ -1,13 +1,12 @@
 <% provide(:title, @salon.name ) %>
-<%= link_to 'Edit this salon', "#{@salon.id}/edit" %>
 	<div class="well">
 		<h1><%= @salon.name %></h1>
 		<p>Description: <%= @salon.description %></p>
 		<p>Address: <%= @salon.address %></p>
-		<% if current_user.voted_for? @salon %>
+		<% if !current_user.voted_for? @salon %>
+                      <%= link_to 'Recommend this salon', unrecommend_salon_path(@salon), method: :put %>
+        <% elsif current_user.voted_for? @salon %>
                       <%= link_to 'Remove recommendation', recommend_salon_path(@salon), method: :put %>
-        <% elsif !current_user.voted_for? @salon %>
-                      <%= link_to 'Recommend this salon', unrecommend_salon_path(@salon), method: :put%>
         <% end %>
 	</div>
 

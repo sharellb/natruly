@@ -1,6 +1,6 @@
 class Salon < ActiveRecord::Base
 	acts_as_votable
- 	acts_as_taggable_on :topics
+ 	acts_as_taggable
  	
  	validates_presence_of :address, :name
  	

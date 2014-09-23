@@ -6,6 +6,8 @@ before_action :set_salon, only: [:show, :edit, :update, :destroy, :recommend, :u
   	@hash = Gmaps4rails.build_markers(@salons) do |salon, marker|
 	  	marker.lat salon.latitude
 	  	marker.lng salon.longitude
+      marker.infowindow salon.name
+      marker.title salon.name
   	end
   end
   
@@ -44,12 +46,12 @@ before_action :set_salon, only: [:show, :edit, :update, :destroy, :recommend, :u
 
   def recommend
     @salon.liked_by current_user
-    redirect_to salons_path
+    redirect_to @salon
   end
 
   def unrecommend
     @salon.unliked_by current_user
-    redirect_to salons_path
+    redirect_to @salon
   end
 
   private

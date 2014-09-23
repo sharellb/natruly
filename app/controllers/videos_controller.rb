@@ -46,6 +46,6 @@ before_action :set_video, only: [:show, :edit, :update, :destroy, :favorite, :un
 		end
 		
 		def video_params
-			params.require(:video).permit(:link, :topic_list)
+			params.require(:video).permit(:link, :tag_list, :title, :author)
 		end
 end

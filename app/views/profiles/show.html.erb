@@ -4,8 +4,9 @@
   <p><%= @user.about%></p>
 </div>
 
-<h2><%= @user.profile_name %>'s favorite videos</h2>
-	<% @user.find_voted_items.in_groups_of(3) do |group| %>
+<div class="col-md-8">
+  <h2><%= @user.profile_name %>'s favorite videos</h2>
+	<% @user.get_voted(Video).in_groups_of(3) do |group| %>
       <div class="row">
         <% group.each do |video| %>
           <% if video %>
@@ -28,5 +29,21 @@
         <% end %>
       </div>
     <% end %>
+
+  <h2><%= @user.profile_name %> recommends these salons</h2>
+  <% @user.get_voted(Salon).in_groups_of(3) do |group| %>
+      <div class="row">
+        <% group.each do |salon| %>
+          <% if salon %>
+            <div class="col-md-4">
+              <h1><%= link_to salon.name, "salons/#{salon.id}" %></h1>
+              <p><%= salon.address %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+</div>
+
 
 
