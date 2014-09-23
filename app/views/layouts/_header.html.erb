@@ -1,11 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", root_path , id: "logo" %>
+    <%= link_to "natruly", root_path , id: "logo" %>
     <nav>
       <ul class="nav navbar-nav pull-right">
-          <li><%= link_to 'Salon Map', salons_path %></li>
           <% if user_signed_in? %>
-            <li><%= link_to 'Videos', videos_path %><li>
+            <li><%= link_to 'Salon Map', salons_path %></li>
+            <li><%= link_to 'Tutorials', videos_path %><li>
             <li><%= link_to 'Profile', current_user.profile_name %></li>
             <li><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
           <% else %>

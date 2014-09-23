@@ -1,5 +1,6 @@
 <% provide(:title, 'Tutorials') %>
-<%= link_to 'Add a new video', 'videos/new' %>
+<%= link_to 'Add a new tutorial', 'videos/new' %>
+
 <% if @videos.any? %>
   <div class="container">
     <h1>Tutorials</h1>
@@ -14,7 +15,7 @@
               <div class="yt_video thumbnail">
                 <%= link_to video.link do %> <%= image_tag "https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg", alt: video.title, class: 'yt_preview img-rounded', :"data-uid" => video.uid %> <% end %> 
                 <div class="caption">
-                  <h5><%= video.title %></h5>
+                  <h5><%= link_to video.title, "videos/#{video.id}" %></h5>
                   <p>Uploaded by: <b><%= video.author %></b></p>
                     <% if current_user.voted_for? video %>
                       <%= link_to 'Remove from Favorites', unfavorite_video_path(video), method: :put %>

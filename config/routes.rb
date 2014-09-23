@@ -6,7 +6,12 @@ Rails.application.routes.draw do
       put "unfavorite", to: "videos#unfavorite"
     end
   end
-  resources :salons
+  resources :salons do
+    member do 
+      put "recommend", to: "salons#recommend"
+      put "unrecommend", to: "salons#unrecommend"
+    end
+  end
   
   root to: 'static_pages#home'
   get 'contact' => 'static_pages#contact'
@@ -15,8 +20,6 @@ Rails.application.routes.draw do
   get 'salons' => 'salons#index'
 
   get '/:id', to: 'profiles#show'
-  get '/favorite' => "videos#favorite"
-  get '/unfavorite' => "videos#unfavorite"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

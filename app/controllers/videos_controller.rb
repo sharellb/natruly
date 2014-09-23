@@ -1,6 +1,8 @@
 class VideosController < ApplicationController
-	def user_params
-		params.require(:video).permit(:id, :tag_list)
+before_action :set_video, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite, :tag]
+	
+	def index
+  		@videos = Video.order('created_at DESC')
 	end
 
 	def new
@@ -8,7 +10,7 @@ class VideosController < ApplicationController
 	end
 	 
 	def create
-	  @video = Video.new(params.require(:video).permit(:link))
+	  @video = Video.new(video_params)
 	  if @video.save
 	    flash[:success] = 'Video added!'
 	    redirect_to videos_path
@@ -17,27 +19,34 @@ class VideosController < ApplicationController
 	  end
 	end
 
-	def index
-  		@videos = Video.order('created_at DESC')
+	def show
 	end
 
 	def destroy
+		@video.destroy
+		redirect_to video_path
 	end
 
 	def favorite
-		@video = Video.find(params[:id])
 		@video.liked_by current_user
 		redirect_to videos_path
 	end
 
 	def unfavorite
-		@video = Video.find(params[:id])
 		@video.unliked_by current_user
 		redirect_to videos_path
 	end
 
 	def tag
-		@video = Video.find(params[:id])
 		redirect_to videos_path
 	end
+
+	private
+		def set_video
+			@video = Video.find(params[:id])
+		end
+		
+		def video_params
+			params.require(:video).permit(:link)
+		end
 end

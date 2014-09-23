@@ -1,5 +1,7 @@
-<% provide(:title, "Salons") %>
+<% provide(:title, 'Salons') %>
 <%= link_to 'Add a new salon to the map!', 'salons/new' %>
+
+
 <h1>Salons</h1>
 <div class="row">
 	<div class="col-md-8">
@@ -8,7 +10,7 @@
 	<div class="col-md-3">
 		<% @salons.each do |salon| %>
 			<div class="well">
-				<h1><%= salon.name %></h1>
+				<h1><%= link_to salon.name, "#{salon.id}" %></h1>
 				<p>Description: <%= salon.description %></p>
 				<p>Address: <%= salon.address %></p>
 			</div>

@@ -1,0 +1,21 @@
+<% provide(:title, @video.title) %>
+	<div class="well">
+	  <h1><%= @video.title %></h1>
+	  <div class="yt_video thumbnail">
+        <%= link_to @video.link do %> <%= image_tag "https://img.youtube.com/vi/#{@video.uid}/mqdefault.jpg", alt: @video.title, class: 'yt_preview img-rounded', :"data-uid" => @video.uid %> <% end %> 
+        <div class="caption">
+          <p>Uploaded by: <b><%= @video.author %></b></p>
+          <% if !current_user.voted_for? @video %>
+                      <%= link_to 'Add to favorites', favorite_video_path(@video), method: :put %>
+          <% elsif current_user.voted_for? @video %>
+                      <%= link_to 'Remove from favorites', unfavorite_video_path(@video), method: :put%>
+          <% end %>
+            <p>
+              Styles:
+              <%= @video.topic_list %>
+            </p>
+          </p>
+        </div>
+      </div>
+	</div>
+

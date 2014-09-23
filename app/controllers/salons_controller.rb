@@ -1,5 +1,5 @@
 class SalonsController < ApplicationController
-before_action :set_salon, only: [:show, :edit, :update, :destroy]
+before_action :set_salon, only: [:show, :edit, :update, :destroy, :recommend, :unrecommend]
   
   def index
   	@salons = Salon.all
@@ -15,13 +15,10 @@ before_action :set_salon, only: [:show, :edit, :update, :destroy]
 
   def create
     @salon = Salon.new(salon_params)
-    respond_to do |format|
-      if @salon.save
-        format.html { redirect_to @salon, notice: 'Salon was successfully created.' }
-        format.json { render :show, status: :created, location: @salon }
-      else
-        format.html { render :new }
-      end
+    if @salon.save
+      redirect_to @salon
+    else
+      render 'new'
     end
   end
 
@@ -32,22 +29,27 @@ before_action :set_salon, only: [:show, :edit, :update, :destroy]
   end
 
   def update
-    respond_to do |format|
-      if @salon.update(salon_params)
-        format.html { redirect_to @salon, notice: 'Salon was successfully updated.' }
-        format.json { render :show, status: :ok, location: @salon }
-      else
-        format.html { render :edit }
-      end
+    if @salon.update(salon_params)
+      redirect_to @salon
+      render 'show'
+    else
+      render 'edit'
     end
   end
 
   def destroy
     @salon.destroy
-    respond_to do |format|
-      format.html { redirect_to salons_path, notice: 'Salon was successfully deleted.' }
-      format.json { head :no_content }
-    end
+    redirect_to salons_path
+  end
+
+  def recommend
+    @salon.liked_by current_user
+    redirect_to salons_path
+  end
+
+  def unrecommend
+    @salon.unliked_by current_user
+    redirect_to salons_path
   end
 
   private
