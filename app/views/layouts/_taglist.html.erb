@@ -1,7 +1,7 @@
 <div class="col-md-3">
 	<div class="btn-group">
 	<% ActsAsTaggableOn::Tag.all.each do |tag| %>
-		<button type="button" class="btn btn-default"><%= tag.name %></button>
+		<button type="button" class="btn btn-default"><%= link_to tag.name, "tags/#{tag.slug}" %></button>
 	<% end %>
 	</div>
 </div>

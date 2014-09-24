@@ -21,10 +21,14 @@
                     <% elsif !current_user.voted_for? video %>
                       <%= link_to 'Add to Favorites', favorite_video_path(video), method: :put%>
                     <% end %>
-                    <p>
-                      Styles:
-                      <%= video.tag_list %>
-                    </p>
+                    <% if !video.tag_list.empty? %>
+                      <p> Tags:
+                      <% tags = video.tag_list.map do |t| %>
+                        <%= link_to t, "tags/#{t.gsub(' ', '-')}" %>
+                      <% end %>
+                      <%= tags.join(' ') %>
+                      </p>
+                    <% end %>
                   </p>
                 </div>
               </div>
