@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails',        '4.1.5'
 gem 'devise'
-gem 'carrierwave'
+gem 'fastimage'
 gem 'acts-as-taggable-on'
 gem 'select2-rails'
 gem 'acts_as_votable', '~> 0.10.0'
