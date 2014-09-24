@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'salons' => 'salons#index'
 
   get '/:id', to: 'profiles#show'
+  get 'tags/:id', to: 'styles#show' 
 
 
 

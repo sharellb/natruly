@@ -1,6 +1,5 @@
 <% provide(:title, 'Tutorials') %>
-<%= link_to 'Add a new tutorial', 'videos/new' %>
-
+<%= render 'layouts/taglist' %>
 <% if @videos.any? %>
   <div class="container">
     <h1>Tutorials</h1>
