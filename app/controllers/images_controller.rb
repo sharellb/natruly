@@ -12,6 +12,7 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     image_size = FastImage.size(@image.link)
+    @image.user = current_user
     if image_size[0] < 600 && image_size[1] < 800
       @image.save
       redirect_to @image

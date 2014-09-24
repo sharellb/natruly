@@ -8,10 +8,4 @@
   <%= link_to "Sign up now!", new_user_registration_path , class: "btn btn-lg btn-primary" %>
 </div>
 
-<% image_size = FastImage.size("http://fc01.deviantart.net/fs17/f/2007/129/7/4/Stock_032__by_enchanted_stock.jpg") %>
-<% if image_size[0] < 200 && image_size[1] < 200%>
-	<%= link_to image_tag "http://fc01.deviantart.net/fs17/f/2007/129/7/4/Stock_032__by_enchanted_stock.jpg" %>
-<% else %>
-	<h2>Image is too big!</h2>
-<% end %>
 

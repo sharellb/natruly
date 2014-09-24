@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= link_to image_tag @image.link %>
+	<div class="gallery">
+  		<%= link_to image_tag @image.link %>
+  	</div>
+	<p><%= @image.user.profile_name %></p>
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>

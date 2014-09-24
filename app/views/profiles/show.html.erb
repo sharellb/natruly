@@ -6,6 +6,15 @@
     <p><%= @user.about%></p>
   </div>
 <% end %>
+<h2><%= @user.profile_name %>'s photos</h2>
+  <% Image.all.each do |photo| %>
+    <div 
+      <% if photo.user_id == @user.id %>
+        <div class="gallery">
+          <%= link_to image_tag photo.link %>
+        </div>
+      <% end %>
+  <% end %>
 <% if @user.get_voted(Video).any? %>
   <h2><%= @user.profile_name %>'s favorite videos</h2>
   <% @user.get_voted(Video).in_groups_of(3) do |group| %>

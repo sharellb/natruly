@@ -71,6 +71,13 @@ p {
   line-height: 1.7em;
 }
 
+.gallery {
+  width: 200px; height: 300px; overflow: hidden;
+  img {
+    width: 100%
+  }
+}
+
 /* header */
 
 #logo{
