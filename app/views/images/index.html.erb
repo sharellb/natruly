@@ -1,10 +1,8 @@
 <h1>Gallery</h1>
     <% @images.each do |image| %>
-    <div class="well">
     	<div class="gallery">
-      		<%= link_to image_tag image.link %>
+      		<%= link_to image_tag(image.link), "images/#{image.id}" %>
       	</div>
-    </div>
     <% end %>
 <br>
 

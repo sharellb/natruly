@@ -4,6 +4,7 @@
     <nav>
       <ul class="nav navbar-nav pull-right">
           <% if user_signed_in? %>
+            
             <li><%= link_to 'Salon Map', salons_path %></li>
             <li><%= link_to 'Tutorials', videos_path %><li>
             <li><%= link_to 'Profile', current_user.profile_name %></li>
