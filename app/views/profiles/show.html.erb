@@ -32,9 +32,9 @@
       </div>
     <% end %>
 <% end %>
-<% if @user.get_voted(Salon).any? %>
+<% if @salons.any? %>
   <h2><%= @user.profile_name %> recommends these salons</h2>
-  <% @user.get_voted(Salon).in_groups_of(3) do |group| %>
+  <% @salons.in_groups_of(3) do |group| %>
       <div class="row">
         <% group.each do |salon| %>
           <% if salon %>
