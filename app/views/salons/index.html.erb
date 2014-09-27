@@ -11,11 +11,13 @@
 				<h1><%= link_to salon.name, "salons/#{salon.id}" %></h1>
 				<p>Description: <%= salon.description %></p>
 				<p>Address: <%= salon.address %></p>
-				<% if !current_user.voted_for? salon %>
-                      <%= link_to 'Recommend this salon', recommend_salon_path(salon), method: :put %>
-                <% elsif current_user.voted_for? salon %>
-                		<%= link_to 'Remove Recommendation', unrecommend_salon_path(salon), method: :put %>
-                <% end %>
+				<% if user_signed_in? %>
+					<% if !current_user.voted_for? salon %>
+	                      <%= link_to 'Recommend this salon', recommend_salon_path(salon), method: :put %>
+	                <% elsif current_user.voted_for? salon %>
+	                		<%= link_to 'Remove Recommendation', unrecommend_salon_path(salon), method: :put %>
+	                <% end %>
+	            <% end %>
 			</div>
 		<% end %>
 	</div>

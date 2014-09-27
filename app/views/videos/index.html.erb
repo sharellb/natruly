@@ -13,10 +13,12 @@
                 <div class="caption">
                   <h5><%= link_to video.title, "videos/#{video.id}" %></h5>
                   <p>Uploaded by: <b><%= video.author %></b></p>
-                    <% if current_user.voted_for? video %>
-                      <%= link_to 'Remove from Favorites', unfavorite_video_path(video), method: :put %>
-                    <% elsif !current_user.voted_for? video %>
-                      <%= link_to 'Add to Favorites', favorite_video_path(video), method: :put%>
+                    <% if user_signed_in? %>
+                      <% if current_user.voted_for? video %>
+                        <%= link_to 'Remove from Favorites', unfavorite_video_path(video), method: :put %>
+                      <% elsif !current_user.voted_for? video %>
+                        <%= link_to 'Add to Favorites', favorite_video_path(video), method: :put%>
+                      <% end %>
                     <% end %>
                     <% if !video.tag_list.empty? %>
                       <p> Tags:
