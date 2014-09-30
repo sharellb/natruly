@@ -1,20 +1,24 @@
 <% provide(:title, 'Edit a Salon') %>
-<div class="container">
-  <h1>Edit salon</h1>
- 
-  <%= form_for @salon do |f| %>
- 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<% if user_signed_in? %>
+  <div class="container">
+    <h1>Edit salon</h1>
+   
+    <%= form_for @salon do |f| %>
+   
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
-      <%= f.label :description %>
-      <%= f.text_field :description %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
 
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </div>
- 
-    <div><%= f.submit "Update" %></div>
-  <% end %>
-</div>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </div>
+   
+      <div><%= f.submit "Update" %></div>
+    <% end %>
+  </div>
+<% else %>
+ You must be signed in to view this page.
+<% end %>

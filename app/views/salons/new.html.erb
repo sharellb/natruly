@@ -1,21 +1,25 @@
 <% provide(:title, 'Add a Salon') %>
-<div class="container">
-  <h1>Add a new salon</h1>
- 
-  <%= form_for @salon do |f| %>
- 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<% if user_signed_in? %>
+  <div class="container">
+    <h1>Add a new salon</h1>
+   
+    <%= form_for @salon do |f| %>
+   
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
-      <%= f.label :description %>
-      <%= f.text_field :description %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
 
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-      <span class="help-block">Enter the address of the salon</span>
-    </div>
- 
-    <%= f.submit class: 'btn btn-default' %>
-  <% end %>
-</div>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+        <span class="help-block">Enter the address of the salon</span>
+      </div>
+   
+      <%= f.submit class: 'btn btn-default' %>
+    <% end %>
+  </div>
+<% else %>
+ You must be signed in to view this page.
+<% end %>
