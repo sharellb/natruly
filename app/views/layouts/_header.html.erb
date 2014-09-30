@@ -3,7 +3,9 @@
     <%= link_to "natruly", root_path , id: "logo" %>
     <nav>
       <ul class="nav navbar-nav pull-right">
-            <li><%= link_to 'Gallery', images_path %></li>
+            <% if Image.all.any? %>
+              <li><%= link_to 'Gallery', images_path %></li>
+            <% end %>
             <li><%= link_to 'Salon Map', salons_path %></li>
             <li><%= link_to 'Tutorials', videos_path %></li>
           <% if user_signed_in? %>
