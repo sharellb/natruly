@@ -1,4 +1,4 @@
 == Natruly
 
-This is a web app created using Rails. It is hosted on heroku at http://vast-taiga-4504.herokuapp.com/
+This is a web app created using Rails. It is hosted on heroku at http://natruly.herokuapp.com/
 
