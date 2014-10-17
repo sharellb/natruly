@@ -19,6 +19,8 @@
 //= require select2
 //= require_tree .
 
+@import 'bootstrap';
+
 
 
 

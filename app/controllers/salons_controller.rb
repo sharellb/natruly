@@ -33,7 +33,6 @@ before_action :set_salon, only: [:show, :edit, :update, :destroy, :recommend, :u
   def update
     if @salon.update(salon_params)
       redirect_to @salon
-      render 'show'
     else
       render 'edit'
     end
