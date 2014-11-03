@@ -9,7 +9,7 @@
 	<div class="col-md-6">
 		<% @salons.each do |salon| %>
 			<div class="well salon">
-				<h1><%= link_to salon.name, "salons/#{salon.id}" %></h1>
+				<h1><%= link_to salon.name, "salons/#{salon.id}", rel: :lazybox  %></h1>
 				<p><%= salon.address %></p>
 				<p><%= salon.description %></p>
 				<% if user_signed_in? %>

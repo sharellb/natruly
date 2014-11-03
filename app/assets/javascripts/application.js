@@ -14,12 +14,17 @@
 //= require gmaps/google
 //= require jquery
 //= require jquery_ujs
+//= require lazybox
 //= require bootstrap
 //= require turbolinks
 //= require select2
 //= require_tree .
 
 
-
+$(document).ready(function() {
+  $('a[rel*=lazybox]').lazybox();
+  // or with options
+  $('a[rel*=lazybox]').lazybox({overlay: true, esc: true, close: true, modal: true, klass: 'class'});
+});
 
 
