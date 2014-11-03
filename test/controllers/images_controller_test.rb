@@ -16,13 +16,6 @@ class ImagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create image" do
-    assert_difference('Image.count') do
-      post :create, image: {  }
-    end
-
-    assert_redirected_to image_path(assigns(:image))
-  end
 
   test "should show image" do
     get :show, id: @image
@@ -34,10 +27,6 @@ class ImagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update image" do
-    patch :update, id: @image, image: {  }
-    assert_redirected_to image_path(assigns(:image))
-  end
 
   test "should destroy image" do
     assert_difference('Image.count', -1) do
