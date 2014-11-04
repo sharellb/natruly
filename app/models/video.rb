@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
 	YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
  
 	validates :link, presence: true, format: YT_LINK_FORMAT
-	before_create do #might need to add arrow back in
+	before_create do 
 	  uid = link.match(YT_LINK_FORMAT)
 	  self.uid = uid[2] if uid && uid[2]
 	 
