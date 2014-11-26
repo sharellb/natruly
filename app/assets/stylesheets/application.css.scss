@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require lazybox
+ *= require jquery-ui
  *= require_self
  */
 
@@ -27,7 +28,7 @@ html {
 
 body {
   padding-top: 60px;
-  background-color: #8fd4d9;
+  background-color: #f4f2f4;
 }
 
 section {

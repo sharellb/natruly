@@ -1,6 +1,12 @@
 
-	<div>
+<div class="dropdown">
+	<button class="btn btn-default dropdown-toggle" type="dropdown">
+		Dropdown
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
 		<% ActsAsTaggableOn::Tag.all.each do |tag| %>
-			<button type="button" class="btn btn-default tag" ><%= link_to tag.name, "tags/#{tag.slug}" %></button>
+			<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to tag.name, "tags/#{tag.slug}" %></button>
 		<% end %>
-	</div>
+	</ul>
+</div>

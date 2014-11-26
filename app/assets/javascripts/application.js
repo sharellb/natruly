@@ -10,12 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require underscore
-//= require gmaps/google
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require lazybox
-//= require bootstrap
 //= require turbolinks
 //= require select2
 //= require_tree .
@@ -26,5 +27,6 @@ $(document).ready(function() {
   // or with options
   $('a[rel*=lazybox]').lazybox({overlay: true, esc: true, close: true, modal: true, klass: 'class'});
 });
+
 
 
