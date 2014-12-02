@@ -10,3 +10,8 @@ one:
 two:
   email: test2@test.com
 
+three:
+  profile_name: 'profile'
+  first_name: 'First'
+  last_name: 'Last'
+  email: 'user@example.com'
